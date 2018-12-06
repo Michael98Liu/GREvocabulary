@@ -6,7 +6,7 @@
 {% block content %}
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
-  <a href="{% url 'quiz' %}">Learn new words</a>
+  <a href="{% url 'learn' %}">Learn new words</a>
   <a href="{% url 'quiz' %}">Take a quiz</a>
 {% else %}
   <p>You are not logged in</p>
