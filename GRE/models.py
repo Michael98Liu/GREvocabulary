@@ -8,7 +8,7 @@ class Profile(models.Model):
                 primary_key=True,
             )
     words = models.ManyToManyField("Word", through='Word_status')
-    
+
 
 class Category(models.Model):
     name = models.CharField(max_length = 80)
@@ -18,7 +18,7 @@ class Word(models.Model):
     meaning = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
             null=True)
-    
+
 class Word_status(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE )
     word = models.ForeignKey(Word, on_delete=models.CASCADE)
@@ -36,3 +36,12 @@ class Word_status(models.Model):
     wrong_count = models.IntegerField(default=0)
 
 # Create your models here.
+try:
+    user = User.objects.create_user('yair', password = '1234')
+
+    # Update fields and then save again
+    user.first_name = 'Yair'
+    user.last_name = 'Sovran'
+    user.save()
+except Exception as e:
+    print(e)
