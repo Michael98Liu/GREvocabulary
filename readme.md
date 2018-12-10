@@ -52,5 +52,10 @@ To create a superuser,
 python manage.py createsuperuser --username=nyuad
 ```
 
+## Populate database with vocabulary
+```
+$ python populate_db.py
+```
+
 # Notes
 - A good [turorial](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django) on Django from Mozilla.
