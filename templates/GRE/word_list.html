@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>You are taking a quiz on {{object_list.0.category}}</h3>
+    <ul>
+        {% for words in object_list %}
+            {% with word_url=words.name  %}
+            <li><a href="{{ word_url }}">{{ words.word }}</a></li>
+            <p>{{ words.meaning }}</p>
+            {% endwith %}
+        {% endfor %}
+    </ul>
+{% endblock %}

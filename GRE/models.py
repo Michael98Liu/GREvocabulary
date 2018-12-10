@@ -36,15 +36,3 @@ class Word_status(models.Model):
             )
     # correct_count = models.IntegerField(default=0)
     # wrong_count = models.IntegerField(default=0)
-
-# Create your models here.
-try:
-    user = User.objects.create_user('yair', password = '1234')
-
-    # Update fields and then save again
-    user.first_name = 'Yair'
-    user.last_name = 'Sovran'
-    user.save()
-    # import insert_words
-except Exception as e:
-    print(e)
