@@ -8,6 +8,7 @@ class Profile(models.Model):
                 primary_key=True,
             )
     words = models.ManyToManyField("Word", through='Word_status')
+    learnt_count = models.IntegerField(default=0)
 
 
 class Category(models.Model):
@@ -18,6 +19,7 @@ class Word(models.Model):
     meaning = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
             null=True)
+    difficulty = models.FloatField(default = 0)
 
 class Word_status(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE )
@@ -32,8 +34,8 @@ class Word_status(models.Model):
                 choices=status_choices,
                 default='DK',
             )
-    correct_count = models.IntegerField(default=0)
-    wrong_count = models.IntegerField(default=0)
+    # correct_count = models.IntegerField(default=0)
+    # wrong_count = models.IntegerField(default=0)
 
 # Create your models here.
 try:
@@ -43,5 +45,6 @@ try:
     user.first_name = 'Yair'
     user.last_name = 'Sovran'
     user.save()
+    # import insert_words
 except Exception as e:
     print(e)
