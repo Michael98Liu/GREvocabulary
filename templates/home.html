@@ -9,7 +9,12 @@
   <a href="{% url 'learn' %}">Learn new words</a>
   <a href="{% url 'quiz' %}">Take a quiz</a>
 {% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">login</a>
+  <center>
+    <h2>
+    You are not logged in!
+    <br/>
+    <a href="{% url 'login' %}">login</a>
+    </h2>
+  </center>
 {% endif %}
 {% endblock %}

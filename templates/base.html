@@ -4,15 +4,51 @@
 <head>
   <meta charset="utf-8">
   <title>{% block title %}GRE Vocab{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+  <style>
+  *
+  {
+      font-family: 'Oswald', sans-serif;
+  }
+
+  a:hover, a:active {
+    background-color: red;
+    text-decoration: none;
+  }
+    /* unvisited link */
+  a:link {
+    color: blue;
+    text-decoration: none;
+  }
+
+  /* visited link */
+  a:visited {
+    color: green;
+    text-decoration: none;
+  }
+
+  /* mouse over link */
+  a:hover {
+    color: red;
+    text-decoration: none;
+  }
+
+  /* selected link */
+  a:active {
+    color: blue;
+    text-decoration: none;
+  }
+  </style>
 </head>
 <body>
   <main>
     {% block content %}
     {% endblock %}
     <br/>
-    <a href="{% url 'home'%}">Return to home</a>
-    <br/>
-    <a href="{% url 'logout'%}">Click here to logout.</a>
+    <center>
+      <a href="{% url 'home'%}"><h1>Return to home</h1></a>
+      <a href="{% url 'logout'%}"><h3>Click here to logout.</h3></a>
+    </center>
   </main>
 </body>
 </html>
