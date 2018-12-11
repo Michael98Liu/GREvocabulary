@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Choose a category to take a Quiz!</h3>
+    <ul>
+        {% for categories in object_list %}
+            {% with cat_url=categories.name  %}
+            <li><a href="{{ cat_url }}">{{ categories.name }}</a></li>
+            {% endwith %}
+        {% endfor %}
+    </ul>
+{% endblock %}

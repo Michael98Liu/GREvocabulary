@@ -88,7 +88,7 @@
     "remonstrate",
     "reprehend",
     "reprove",
-    "revile", 
+    "revile",
     "tirade",
     "vituperate"
   ],
@@ -132,7 +132,7 @@
     "feigned",
     "guile",
     "mendacious/mendacity",
-    "perfidy", 
+    "perfidy",
     "prevaricate",
     "specious",
     "spurious"
@@ -176,7 +176,7 @@
     "recreant",
     "timorous",
     "trepidation"
-  ], 
+  ],
   "boring": [
     "banal",
     "fatuous",
@@ -188,7 +188,7 @@
     "prosaic",
     "quotidian",
     "trite"
-  ], 
+  ],
   "weaken": [
     "adulterate",
     "enervate",
@@ -198,7 +198,7 @@
     "stultofy",
     "undermine",
     "vitiate"
-  ], 
+  ],
   "assist": [
     "abet",
     "advocate",

@@ -25,7 +25,7 @@ SECRET_KEY = '-xrmon$r@m%tggf9pyoxwsq)+-_2=%2*o1e8ths5dpnx#=0mn7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['35.227.42.0', '35.196.62.105', '127.0.0.1', '104.196.180.37']
+ALLOWED_HOSTS = ['35.237.113.206', '35.227.42.0', '35.196.62.105', '127.0.0.1', '104.196.180.37']
 
 
 # Application definition
@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'GRE',
         'USER': 'user',
         'PASSWORD': 'pass',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'HOST': '35.243.212.94',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
@@ -120,6 +120,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
