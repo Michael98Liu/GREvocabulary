@@ -12,4 +12,5 @@ urlpatterns = [
     path('quiz/', login_required(CategoryList.as_view()), name="quiz"),
     path('learn/', views.learn, name='learn'),
     path('log/', views.returnLog, name='log'),
+    path('signup/', views.signUp.as_view(), name='signup')
 ]
