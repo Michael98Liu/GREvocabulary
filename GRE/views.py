@@ -25,10 +25,12 @@ class WordList(ListView):
         meaning_dict = Word.objects.filter(category__name=self.kwargs['category']).values('meaning')
         word_meaning = Word.objects.filter(category__name=self.kwargs['category'])
         definitions = {}
+        diff = {}
 
         # definitions: list of correct definition
         for w in word_meaning:
             definitions[w.word] = w.meaning
+            diff[w.word] = w.difficulty
 
         # options: list of options
         for i in words_dict:
@@ -39,7 +41,7 @@ class WordList(ListView):
                 if j['meaning'] not in opt:
                     opt.append(j['meaning'])
             random.shuffle(opt)
-            options.append([w, opt, definitions[w]] )
+            options.append([w, opt, definitions[w], diff[w]] )
 
         context["options"] = options
         context['cat'] = self.kwargs['category']

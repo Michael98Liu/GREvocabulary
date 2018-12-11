@@ -2,12 +2,12 @@
 
 {% block content %}
     <h3>You are taking a quiz on Category: {{cat}}</h3>
-
+    <h4>Please click on the right definition</h4>
     <ul>
-        {% for word, opts, def in options %}
+        {% for word, opts, def, diff in options %}
             {% with correct_url=word|add:"/"|add:"correct"|add:"/"|add:cat  %}
             {% with wrong_url=word|add:"/"|add:"wrong"|add:"/"|add:cat  %}
-            <li>{{ word }}</a></li>
+            <li><h4>{{ word }}</h4> Difficulty: {{ diff }}</li>
             <ul>
                 {% for opt in opts %}
                 {% if opt ==  def %}
@@ -21,5 +21,5 @@
             {% endwith %}
         {% endfor %}
     </ul>
-
+<a href="{% url 'quiz'%}">Return to quiz home</a>
 {% endblock %}
