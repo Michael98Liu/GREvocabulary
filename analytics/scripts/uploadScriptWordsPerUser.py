@@ -5,8 +5,7 @@ import glob
 import errno
 
 mydb = mysql.connector.connect(user='user', password='pass',
-                               host='localhost',
-                               database='GRE')
+                               host='35.243.212.94', database='GRE')
 mycursor = mydb.cursor()
 
 path = 'output/wordsPerUser/*'   
