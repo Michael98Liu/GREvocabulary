@@ -6,6 +6,6 @@ mvn -Pdataflow-runner compile exec:java \
       --output=gs://gre-words/output/wordScore/ \
       --runner=DataflowRunner"
 cd ..
-gsutil cp -r gs://gre-words/output/wordScore /Users/yana/Documents/classes/Senior2018/LargeScaleWeb/GREWordApp/GREvocabulary/analytics/scripts/output/
+gsutil cp -r gs://gre-words/output/wordScore ./output/
 python uploadScriptWordsScore.py
-rm -rf /Users/yana/Documents/classes/Senior2018/LargeScaleWeb/GREWordApp/GREvocabulary/analytics/scripts/output/wordScore
+rm -rf ./output/wordScore
