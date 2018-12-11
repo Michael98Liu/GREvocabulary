@@ -13,7 +13,7 @@ with open("./definitions.json") as fd:
     definitions = json.load(fd)
 
     for category in allwords.keys():
-        formatted = category.replace("/", "-").replace(" ", "_")
+        formatted = category.replace("/", "-").replace(" ", "_").replace("(", "-").replace(")", "-")
         cat = models.Category(name=formatted)
         cat.save()
         for word in allwords[category]:
@@ -21,10 +21,10 @@ with open("./definitions.json") as fd:
             try:
                 for i, d in definitions[word].items():
                     meaning = d[0]
+                w = models.Word(word=word, meaning=meaning, category = cat)
+                w.save()
             except Exception as e:
                 print(e)
-            w = models.Word(word=word, meaning=meaning, category = cat)
-            w.save()
 
     fp.close()
 
