@@ -11,4 +11,5 @@ urlpatterns = [
     path("quiz/<str:category>", login_required(WordList.as_view()), name="quizlist" ),
     path('quiz/', login_required(CategoryList.as_view()), name="quiz"),
     path('learn/', views.learn, name='learn'),
+    path('log/', views.returnLog, name='log'),
 ]

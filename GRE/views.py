@@ -64,6 +64,12 @@ def quizChooseWrong(request, word, category):
         f.write("{} {} {} {}\n".format(request.user, word, "w", ts))
     return redirect("/GRE/quiz/"+category)
 
+def returnLog(request):
+    with open("./log/userChoices.log") as f:
+        response = HttpResponse(f, content_type='text')
+        response['Content-Disposition'] = 'attachment; filename="userChoices.log"'
+    return response
+
 @login_required()
 def learn(request):
     return render(request, 'learn.html')
