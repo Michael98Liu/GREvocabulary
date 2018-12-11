@@ -49,7 +49,7 @@ Password: `1234`
 
 To create a superuser,
 ```
-python3 manage.py createsuperuser --username=nyuad
+$ python3 manage.py createsuperuser --username=nyuad
 ```
 
 ## Populate database with vocabulary
