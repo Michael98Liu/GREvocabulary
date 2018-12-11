@@ -13,7 +13,8 @@ with open("./definitions.json") as fd:
     definitions = json.load(fd)
 
     for category in allwords.keys():
-        cat = models.Category(name=category)
+        formatted = category.replace("/", "-").replace(" ", "_")
+        cat = models.Category(name=formatted)
         cat.save()
         for word in allwords[category]:
             meaning = ""
