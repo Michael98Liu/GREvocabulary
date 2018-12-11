@@ -9,7 +9,7 @@ mydb = mysql.connector.connect(user='user', password='pass',
                                database='GRE')
 mycursor = mydb.cursor()
 
-path = '/Users/yana/Documents/classes/Senior2018/LargeScaleWeb/GREWordApp/GREvocabulary/analytics/scripts/output/wordScore/*'   
+path = 'output/wordScore/*'   
 files = glob.glob(path)   
 for name in files: # 'file' is a builtin type, 'name' is a less-ambiguous variable name.
     try:
@@ -20,9 +20,9 @@ for name in files: # 'file' is a builtin type, 'name' is a less-ambiguous variab
                 word = line[0]
                 score = line[1]
                 #print(word, " : ", score)
-        sql = "UPDATE GRE_word SET difficulty=%s WHERE word = %s"
-        val = (float(score), lword)
-        mycursor.execute(sql, val)
+                sql = "UPDATE GRE_word SET difficulty=%s WHERE word = %s"
+                val = (float(score), word)
+                mycursor.execute(sql, val)
 
     except IOError as exc:
         if exc.errno != errno.EISDIR: # Do not fail if a directory is found, just ignore it.
