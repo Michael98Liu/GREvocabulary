@@ -8,7 +8,8 @@ import json
 fp = open("./allwords.json", "r")
 allwords = json.load(fp)
 for category in allwords.keys():
-    cat = models.Category(name=category)
+    formatted = category.replace("/", "-").replace(" ", "_")
+    cat = models.Category(name=formatted)
     cat.save()
     for word in allwords[category]:
         w = models.Word(word=word, meaning="", category = cat)
