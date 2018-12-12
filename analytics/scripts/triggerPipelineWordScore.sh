@@ -9,3 +9,4 @@ cd ..
 gsutil cp -r gs://gre-words/output/wordScore ./output/
 python uploadScriptWordsScore.py
 rm -rf ./output/wordScore
+gsutil rm -r gs://gre-words/output/wordScore

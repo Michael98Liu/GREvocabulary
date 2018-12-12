@@ -19,7 +19,7 @@ for name in files: # 'file' is a builtin type, 'name' is a less-ambiguous variab
                 user = line[0]
                 wordsLearnt = line[1]
                 #print(user, " : ", wordsLearnt)
-                sql = "UPDATE Profile SET learnt_count=%s WHERE user = %s"
+                sql = "UPDATE GRE_profile SET learnt_count=%s WHERE user = %s"
                 val = (int(wordsLearnt), user)
                 mycursor.execute(sql, val)
 

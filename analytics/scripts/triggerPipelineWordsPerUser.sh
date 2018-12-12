@@ -9,3 +9,4 @@ cd ..
 gsutil cp -r gs://gre-words/output/wordsPerUser ./output/
 python uploadScriptWordsPerUser.py
 rm -rf ./output/wordsPerUser
+gsutil rm -r gs://gre-words/output/wordsPerUser
