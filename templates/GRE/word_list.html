@@ -1,22 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h3>You are taking a quiz on Category: {{cat}}</h3>
-    <h4>Please click on the right definition</h4>
+    <h3>You are learning words from Category: {{cat}}</h3>
     <ul>
-        {% for word, opts, def, diff in options %}
-            {% with correct_url=word|add:"/"|add:"correct"|add:"/"|add:cat  %}
-            {% with wrong_url=word|add:"/"|add:"wrong"|add:"/"|add:cat  %}
-            <li><h4>{{ word }}</h4> Difficulty: {{ diff }}</li>
-            <ul>
-                {% for opt in opts %}
-                {% if opt ==  def %}
-                    <li><a href="{{ correct_url }}">{{ opt }}</a></li>
-                {% else %}
-                    <li><a href="{{ wrong_url }}">{{ opt }}</a></li>
-                {% endif %}
-                {% endfor %}
-            </ul>
+        {% for word, def in options %}
+            {% with learn_url=word|add:"/"|add:"learning"  %}
+            {% with know_url=word|add:"/"|add:"know" %}
+            <li><h4>{{ word }}</h4></li>
+            <p>{{ def }}</p>
+            <a href="{{ know_url }}">I know this word!</a>
+            <a href="{{ learning_url }}">I'm still learning</a>
             {% endwith %}
             {% endwith %}
         {% endfor %}
