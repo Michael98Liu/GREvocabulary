@@ -31,11 +31,12 @@ with open("./definitions.json") as fd:
 # Create an user here.
 try:
     user = User.objects.create_user('yair', password = '1234')
-
     # Update fields and then save again
     user.first_name = 'Yair'
     user.last_name = 'Sovran'
     user.save()
+    prof = models.Profile(user=user)
+    prof.save()
     # import insert_words
 except Exception as e:
     print(e)

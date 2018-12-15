@@ -1,25 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h3>You are taking a quiz on Category: {{cat}}</h3>
-    <h4>Please click on the right definition</h4>
+    <h3>You are learning words from Category: {{cat}}</h3>
     <ul>
-        {% for word, opts, def, diff in options %}
-            {% with correct_url=word|add:"/"|add:"correct"|add:"/"|add:cat  %}
-            {% with wrong_url=word|add:"/"|add:"wrong"|add:"/"|add:cat  %}
-            <li><h4>{{ word }}</h4> Difficulty: {{ diff }}</li>
-            <ul>
-                {% for opt in opts %}
-                {% if opt ==  def %}
-                    <li><a href="{{ correct_url }}">{{ opt }}</a></li>
-                {% else %}
-                    <li><a href="{{ wrong_url }}">{{ opt }}</a></li>
-                {% endif %}
-                {% endfor %}
-            </ul>
+        {% for word, def in options %}
+            {% with learn_url=cat|add:"/"|add:"learning"|add:"/"|add:word  %}
+            {% with know_url=cat|add:"/"|add:"know"|add:"/"|add:word %}
+            <li><h4>{{ word }}</h4></li>
+            <p>{{ def }}</p>
+            <a href="{{ know_url }}">I know this word!</a>
+            <a href="{{ learn_url }}">I'm still learning</a>
             {% endwith %}
             {% endwith %}
         {% endfor %}
     </ul>
-<a href="{% url 'quiz'%}">Return to quiz home</a>
+<a href="{% url 'learn'%}">Return to list of category</a>
 {% endblock %}
