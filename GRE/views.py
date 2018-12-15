@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 
 import random
 import time
+import sys
 
 from GRE.models import Category, Word, Word_status, Profile
 
@@ -23,13 +24,54 @@ class signUp(generic.CreateView):
 class CategoryList(ListView):
     model = Category
 
+class QuizList(ListView):
+
+    template_name = 'GRE/quiz_word_list.html'
+
+    def get_queryset(self):
+        u = User.objects.get(username=self.request.user)
+        p = Profile.objects.get(user=u)
+
+        return Word_status.objects.filter(user=p, status="K")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # get all definitions
+        all_words = Word.objects.all()
+        definitions = [] # definitions: list of correct definition
+        for w in all_words:
+            definitions.append(w.meaning)
+
+        u = User.objects.get(username=self.request.user)
+        p = Profile.objects.get(user=u)
+        ws = Word_status.objects.filter(user=p, status="K")
+
+        word_to_quiz = []
+
+        for word in ws:
+            #print(word.word.word)
+            w = Word.objects.get(word=word.word.word)
+
+            options = [] # generate random options for this word
+            options.append(w.meaning)
+            for i in range(3):
+                r = random.randint(0, len(definitions))
+                options.append(definitions[r])
+
+            random.shuffle(options)
+            word_to_quiz.append([w.word, w.meaning, options])
+
+        context['options'] = word_to_quiz
+        return context
+
+
 class WordList(ListView):
     model = Word
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
         options = []
         words_dict = Word.objects.filter(category__name=self.kwargs['category']).values('word')
         #meaning_dict = Word.objects.filter(category__name=self.kwargs['category']).values('meaning')
@@ -63,33 +105,57 @@ class WordList(ListView):
     def get_queryset(self):
         return Word.objects.filter(category__name=self.kwargs['category'])
 
-def quizChooseCorrect(request, word, category):
+def quizChooseCorrect(request, word):
     # write to log
     ts = int(time.time())
     with open("./log/userChoices.log", "a") as f:
         f.write("{} {} {} {}\n".format(request.user, word, "c", ts))
-    return redirect("/GRE/quiz/"+category)
+    return redirect("/GRE/quiz/")
 
-def quizChooseWrong(request, word, category):
+def quizChooseWrong(request, word):
     # write to log
     ts = int(time.time())
     with open("./log/userChoices.log", "a") as f:
         f.write("{} {} {} {}\n".format(request.user, word, "w", ts))
-    return redirect("/GRE/quiz/"+category)
+    return redirect("/GRE/quiz/")
 
-def learnKnow(request, word):
-    # write to log
-    print(request.user, word)
+def learnKnow(request, category, word ):
+
     u = User.objects.get(username=request.user)
-    print(u)
     p = Profile.objects.get(user=u)
-    print(p)
-    #w = Word_status.objects.get(word=word, user=Profile.objects.get(user=request.user))
-    #print(w)
+    w = Word.objects.get(word=word)
+
+    try:
+        # if the word status object does not exist, create one
+        ws = Word_status.objects.get(word=w, user=p)
+        ws.status = 'K'
+        ws.save()
+    except Exception as e:
+        if type(e).__name__ == "DoesNotExist":
+            ws = Word_status(word=w, user=p, status = 'K')
+            ws.save()
+        else:
+            raise Exception("Exception Type not known")
+
     return redirect("/GRE/learn/"+category)
 
-def learnLearning(request, word):
-    # write to log
+def learnLearning(request, category, word):
+
+    u = User.objects.get(username=request.user)
+    p = Profile.objects.get(user=u)
+    w = Word.objects.get(word=word)
+
+    try:
+        # if the word status object does not exist, create one
+        ws = Word_status.objects.get(word=w, user=p)
+        ws.status = 'LN'
+        ws.save()
+    except Exception as e:
+        if type(e).__name__ == "DoesNotExist":
+            ws = Word_status(word=w, user=p, status = "LN")
+            ws.save()
+        else:
+            raise Exception("Exception Type not known")
 
     return redirect("/GRE/learn/"+category)
 
@@ -99,6 +165,5 @@ def returnLog(request):
         response['Content-Disposition'] = 'attachment; filename="userChoices.log"'
     return response
 
-@login_required()
 def learn(request):
     return render(request, 'learn.html')

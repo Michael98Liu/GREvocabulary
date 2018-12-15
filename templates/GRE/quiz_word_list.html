@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h3>You are learning words from Category: {{cat}}</h3>
+    <h3>You are being tested on the words that you marked as "Known"</h3>
     <h4>Please click on the right definition</h4>
     <ul>
-        {% for word, opts, def, diff in options %}
-            {% with correct_url=word|add:"/"|add:"correct"|add:"/"|add:cat  %}
-            {% with wrong_url=word|add:"/"|add:"wrong"|add:"/"|add:cat  %}
-            <li><h4>{{ word }}</h4> Difficulty: {{ diff }}</li>
+        {% for word, def, opts in options %}
+            {% with correct_url=word|add:"/"|add:"correct"|add:"/"  %}
+            {% with wrong_url=word|add:"/"|add:"wrong"|add:"/"  %}
+            <li><h4>{{ word }}</h4></li>
             <ul>
                 {% for opt in opts %}
                 {% if opt ==  def %}
@@ -21,5 +21,4 @@
             {% endwith %}
         {% endfor %}
     </ul>
-<a href="{% url 'quiz'%}">Return to quiz home</a>
 {% endblock %}
