@@ -56,7 +56,7 @@ class QuizList(ListView):
             options = [] # generate random options for this word
             options.append(w.meaning)
             for i in range(3):
-                r = random.randint(0, len(definitions)-1-1-1-1-1-1-1-1-1)
+                r = random.randint(0, len(definitions)-1)
                 options.append(definitions[r])
 
             random.shuffle(options)
@@ -77,16 +77,18 @@ class WordList(ListView):
         #meaning_dict = Word.objects.filter(category__name=self.kwargs['category']).values('meaning')
         word_meaning = Word.objects.filter(category__name=self.kwargs['category'])
         definitions = {}
+        diff = {}
         #diff = {}
 
         # definitions: list of correct definition
         for w in word_meaning:
             definitions[w.word] = w.meaning
-            #diff[w.word] = w.difficulty
+            diff[w.word] = w.difficulty
+            #ifknow[w.word] = w.status
 
         for i in words_dict:
             w = i['word']
-            options.append([w, definitions[w]])
+            options.append([w, definitions[w], diff[w]])
         # options: list of options
         # for i in words_dict:
         #     w = i['word']
