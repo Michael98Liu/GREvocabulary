@@ -1,10 +1,3 @@
-# TODO
-- [] When click on links, display notes to tell user their status update, for example, "you have learned the word", or "you have made a wrong choice"
-- [] Write user activity log to `log` dir
-- [] When user make a wrong choice at quiz, status of word should be updated to "DK"
-- [] Display result from user activity analytics on front page
-- [] (Optional) For words with difficulty greater than 0.5, display as red, otherwise green
-
 # Setup
 ## Install and Use Virtual Environment
 Set up a virtualenv for python to install later dependencies:
