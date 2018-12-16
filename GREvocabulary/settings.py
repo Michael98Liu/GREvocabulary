@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'GRE',
         'USER': 'user',
         'PASSWORD': 'pass',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'HOST': '35.243.212.94',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
