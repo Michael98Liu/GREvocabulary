@@ -56,7 +56,7 @@ class QuizList(ListView):
             options = [] # generate random options for this word
             options.append(w.meaning)
             for i in range(3):
-                r = random.randint(0, len(definitions))
+                r = random.randint(0, len(definitions)-1-1-1-1-1-1-1-1-1)
                 options.append(definitions[r])
 
             random.shuffle(options)
