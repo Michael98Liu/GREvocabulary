@@ -5,9 +5,11 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+<center>
   Hi {{ user.username }}!
   <a href="{% url 'learn' %}">Learn new words</a>
   <a href="{% url 'quiz' %}">Take a quiz</a>
+</center>
 {% else %}
   <center>
     <h2>
